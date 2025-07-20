@@ -1,0 +1,32 @@
+name: Publish Python Package to PyPI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write  # Required for OIDC to work
+
+    # 'environment' is strongly recommended if specified in your PyPI trusted publishing setup
+    environment: pypi
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install build tool
+        run: pip install build
+
+      - name: Build dist files
+        run: python -m build
+
+      - name: Publish to PyPI using OIDC
+        uses: pypa/gh-action-pypi-publish@release/v1
