@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools>=40.9.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "leaderbird"
+version = "0.1.0"
+description = "A minimal starting package for leaderbird, for leaderboards and rankings."
+authors = [
+  { name="Robert James Toth", email="robert.toth@thetatech.ai" }
+]
