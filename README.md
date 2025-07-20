@@ -7,3 +7,4 @@ Helper library for leaderboards and rankings, such as ELO-based rankings between
 ## Rules
 1. Don't let the code get sloppy.
 2. It should "just work".
+3. Don't procrastinate on refactoring; refactor as you go.
