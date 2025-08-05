@@ -7,7 +7,8 @@ from .elo import (
 from .config import (
     DEFAULT_RATING,
     DEFAULT_K_FACTOR,
-    ESTABLISHED_PLAYER_K_FACTOR
+    ESTABLISHED_PLAYER_K_FACTOR,
+    PROBABILITY_DECIMAL_PRECISION
 )
 from .models import Player, Leaderboard
 
@@ -20,6 +21,7 @@ __all__ = [
     'DEFAULT_RATING',
     'DEFAULT_K_FACTOR',
     'ESTABLISHED_PLAYER_K_FACTOR',
+    'PROBABILITY_DECIMAL_PRECISION',
     'Player',
     'Leaderboard'
 ]

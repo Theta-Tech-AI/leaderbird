@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from .models import Player, Leaderboard
 from .elo import update_elo, update_elo_draw, calculate_expected_score
-from .config import DEFAULT_K_FACTOR
+from .config import DEFAULT_K_FACTOR, PROBABILITY_DECIMAL_PRECISION
 
 def create_sample_leaderboard():
     leaderboard = Leaderboard()
@@ -41,9 +41,12 @@ def create_app():
             player1_expected = calculate_expected_score(player1.rating, player2.rating)
             player2_expected = calculate_expected_score(player2.rating, player1.rating)
             
-            # Convert to percentages with one decimal point
-            player1_win_prob = round(player1_expected * 100, 1)
-            player2_win_prob = round(player2_expected * 100, 1)
+            # Convert to percentages with configurable decimal precision
+            percentage_multiplier = 10 ** 2  # 100 for percentage conversion
+            precision_multiplier = 10 ** PROBABILITY_DECIMAL_PRECISION
+            
+            player1_win_prob = round(player1_expected * percentage_multiplier * precision_multiplier) / precision_multiplier
+            player2_win_prob = round(player2_expected * percentage_multiplier * precision_multiplier) / precision_multiplier
         
         return render_template('index.html', 
                              rankings=rankings, 
