@@ -23,6 +23,50 @@ pip3 install -e .
 python3 -m leaderbird  # Opens web browser with leaderboard interface
 ```
 
+## Using ELO Utility Functions
+
+### Basic Usage
+```python
+import leaderbird
+
+# Update ratings after a match
+player_a_rating = 1200
+player_b_rating = 1100
+did_a_win = True
+
+new_a_rating, new_b_rating = leaderbird.update_elo(
+    player_a_rating, 
+    player_b_rating, 
+    did_a_win
+)
+print(f"Player A: {player_a_rating} → {new_a_rating}")
+print(f"Player B: {player_b_rating} → {new_b_rating}")
+```
+
+### Advanced Configuration
+```python
+import leaderbird
+
+# Custom K-factor for established players
+new_a_rating, new_b_rating = leaderbird.update_elo(
+    1800, 1750, True, k_factor=16
+)
+
+# Handle draws
+draw_a_rating, draw_b_rating = leaderbird.update_elo_draw(1500, 1500)
+
+# Calculate expected score
+expected = leaderbird.calculate_expected_score(1200, 1100)
+print(f"Expected score: {expected:.2f}")
+```
+
+### Environment Configuration
+Create a `.env` file:
+```env
+LEADERBIRD_DEFAULT_RATING=1200
+LEADERBIRD_K_FACTOR=24
+```
+
 ### Switching Between Local and PyPI Versions
 
 To test PyPI version:

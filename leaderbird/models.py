@@ -1,5 +1,5 @@
 class Player:
-    def __init__(self, name, rating=1000):
+    def __init__(self, name, rating=800):
         self.name = name
         self.rating = rating
 
