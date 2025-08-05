@@ -41,9 +41,9 @@ def create_app():
             player1_expected = calculate_expected_score(player1.rating, player2.rating)
             player2_expected = calculate_expected_score(player2.rating, player1.rating)
             
-            # Convert to percentages and round to whole numbers
-            player1_win_prob = round(player1_expected * 100)
-            player2_win_prob = round(player2_expected * 100)
+            # Convert to percentages with one decimal point
+            player1_win_prob = round(player1_expected * 100, 1)
+            player2_win_prob = round(player2_expected * 100, 1)
         
         return render_template('index.html', 
                              rankings=rankings, 
