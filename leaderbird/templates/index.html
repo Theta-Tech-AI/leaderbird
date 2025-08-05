@@ -11,33 +11,189 @@
         .rating-change-negative { color: #dc3545; font-weight: bold; }
         .old-rating { color: #6c757d; font-size: 0.9em; }
         
-        /* Match interface styles */
-        .match-section { border-top: 2px solid #ddd; padding-top: 30px; }
-        .match-container { text-align: center; margin: 40px 0; }
-        .player-card { 
-            display: inline-block; 
-            margin: 20px; 
-            padding: 20px; 
-            border: 2px solid #ddd; 
-            border-radius: 8px; 
-            min-width: 150px;
+        /* Enhanced match interface styles */
+        .match-section { 
+            border-top: 2px solid #ddd; 
+            padding-top: 30px; 
+            margin-top: 40px;
         }
-        .vs { font-size: 24px; font-weight: bold; margin: 0 20px; }
-        .result-buttons { margin: 30px 0; }
-        .result-btn { 
-            margin: 10px; 
-            padding: 15px 25px; 
-            font-size: 16px; 
-            cursor: pointer; 
-            border: none; 
-            border-radius: 5px; 
-            background-color: #007bff; 
-            color: white; 
+
+        .match-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
-        .result-btn:hover { background-color: #0056b3; }
-        .draw-btn { background-color: #6c757d; }
-        .draw-btn:hover { background-color: #545b62; }
-        .no-match { text-align: center; color: #6c757d; font-style: italic; }
+
+        .player-column {
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .player-column:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .player-info {
+            margin-bottom: 25px;
+        }
+
+        .player-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+        }
+
+        .player-rating {
+            font-size: 1.1em;
+            color: #495057;
+            margin: 5px 0;
+        }
+
+        .win-probability {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007bff;
+            margin: 15px 0;
+            padding: 8px 15px;
+            background-color: #e3f2fd;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .player-status {
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .favored { color: #28a745; }
+        .underdog { color: #dc3545; }
+
+        .win-btn {
+            width: 100%;
+            padding: 15px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .player1-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+
+        .player1-btn:hover {
+            background: linear-gradient(135deg, #218838 0%, #1fa085 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .player2-btn {
+            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+            color: white;
+        }
+
+        .player2-btn:hover {
+            background: linear-gradient(135deg, #c82333 0%, #e8670e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        .draw-column {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .vs-section {
+            padding: 20px 0;
+        }
+
+        .vs {
+            font-size: 2em;
+            font-weight: bold;
+            color: #6c757d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .draw-btn {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .draw-btn:hover {
+            background: linear-gradient(135deg, #5a6268 0%, #3d4246 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .match-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px 10px;
+            }
+            
+            .player-column {
+                padding: 20px 15px;
+            }
+            
+            .player-name {
+                font-size: 1.3em;
+            }
+            
+            .win-probability {
+                font-size: 1.1em;
+            }
+            
+            .vs {
+                font-size: 1.5em;
+            }
+            
+            .draw-column {
+                order: 3; /* Move draw button to bottom on mobile */
+            }
+        }
+
+        .no-match { 
+            text-align: center; 
+            color: #6c757d; 
+            font-style: italic; 
+            padding: 40px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
     </style>
 </head>
 <body>
@@ -72,41 +228,51 @@
         <h2>New Match</h2>
         
         {% if player1 and player2 %}
-            <div class="match-container">
-                <div class="player-card">
-                    <h3>{{ player1.name }}</h3>
-                    <p>Rating: {{ player1.rating }}</p>
+            <div class="match-grid">
+                <!-- Player 1 Column (Favored) -->
+                <div class="player-column">
+                    <div class="player-info">
+                        <p class="player-status favored">Favored:</p>
+                        <h3 class="player-name">{{ player1.name }}</h3>
+                        <p class="player-rating">Rating: {{ player1.rating }}</p>
+                        <p class="win-probability">Odds of winning: {{ player1_win_prob }}%</p>
+                    </div>
+                    <form method="POST" action="/match/result" class="player-form">
+                        <input type="hidden" name="player1" value="{{ player1.name }}">
+                        <input type="hidden" name="player2" value="{{ player2.name }}">
+                        <input type="hidden" name="result" value="player1_wins">
+                        <button type="submit" class="win-btn player1-btn">{{ player1.name }} Wins</button>
+                    </form>
                 </div>
-                
-                <span class="vs">VS</span>
-                
-                <div class="player-card">
-                    <h3>{{ player2.name }}</h3>
-                    <p>Rating: {{ player2.rating }}</p>
+
+                <!-- Draw Column -->
+                <div class="draw-column">
+                    <div class="vs-section">
+                        <span class="vs">VS</span>
+                    </div>
+                    <form method="POST" action="/match/result" class="draw-form">
+                        <input type="hidden" name="player1" value="{{ player1.name }}">
+                        <input type="hidden" name="player2" value="{{ player2.name }}">
+                        <input type="hidden" name="result" value="draw">
+                        <button type="submit" class="draw-btn">Draw</button>
+                    </form>
                 </div>
-            </div>
 
-            <div class="result-buttons">
-                <form method="POST" action="/match/result" style="display: inline;">
-                    <input type="hidden" name="player1" value="{{ player1.name }}">
-                    <input type="hidden" name="player2" value="{{ player2.name }}">
-                    <input type="hidden" name="result" value="player1_wins">
-                    <button type="submit" class="result-btn">{{ player1.name }} Wins</button>
-                </form>
-
-                <form method="POST" action="/match/result" style="display: inline;">
-                    <input type="hidden" name="player1" value="{{ player1.name }}">
-                    <input type="hidden" name="player2" value="{{ player2.name }}">
-                    <input type="hidden" name="result" value="draw">
-                    <button type="submit" class="result-btn draw-btn">Draw</button>
-                </form>
-
-                <form method="POST" action="/match/result" style="display: inline;">
-                    <input type="hidden" name="player1" value="{{ player1.name }}">
-                    <input type="hidden" name="player2" value="{{ player2.name }}">
-                    <input type="hidden" name="result" value="player2_wins">
-                    <button type="submit" class="result-btn">{{ player2.name }} Wins</button>
-                </form>
+                <!-- Player 2 Column (Underdog) -->
+                <div class="player-column">
+                    <div class="player-info">
+                        <p class="player-status underdog">Underdog:</p>
+                        <h3 class="player-name">{{ player2.name }}</h3>
+                        <p class="player-rating">Rating: {{ player2.rating }}</p>
+                        <p class="win-probability">Odds of winning: {{ player2_win_prob }}%</p>
+                    </div>
+                    <form method="POST" action="/match/result" class="player-form">
+                        <input type="hidden" name="player1" value="{{ player1.name }}">
+                        <input type="hidden" name="player2" value="{{ player2.name }}">
+                        <input type="hidden" name="result" value="player2_wins">
+                        <button type="submit" class="win-btn player2-btn">{{ player2.name }} Wins</button>
+                    </form>
+                </div>
             </div>
         {% else %}
             <div class="no-match">

@@ -67,6 +67,24 @@ LEADERBIRD_DEFAULT_RATING=1200
 LEADERBIRD_K_FACTOR=24
 ```
 
+## Philosophy: The Beauty of ELO Probability Predictions
+
+One of the most elegant aspects of the ELO rating system is its ability to provide meaningful probability predictions for any matchup. When you see two players about to compete, ELO doesn't just tell you who is "better" - it tells you exactly how likely each player is to win.
+
+### How ELO Predictions Work
+
+The ELO system uses a mathematical formula to convert rating differences into win probabilities:
+- **Equal ratings (800 vs 800)**: Each player has exactly 50% chance to win
+- **100-point difference (900 vs 800)**: Higher player has ~64% chance to win  
+- **200-point difference (1000 vs 800)**: Higher player has ~76% chance to win
+- **400-point difference (1200 vs 800)**: Higher player has ~91% chance to win
+
+### Why This Matters
+
+This mathematical precision transforms every match from a simple "who wins?" into a probability test. When a 750-rated player defeats a 900-rated player, it's not just an upset - it's a ~35% probability event that happened. This helps distinguish between skill improvements, lucky streaks, and statistical variance.
+
+ELO predictions make every match meaningful and help players understand the true significance of their victories and defeats.
+
 ### Switching Between Local and PyPI Versions
 
 To test PyPI version:

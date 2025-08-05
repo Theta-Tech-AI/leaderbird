@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from .models import Player, Leaderboard
-from .elo import update_elo, update_elo_draw
+from .elo import update_elo, update_elo_draw, calculate_expected_score
 from .config import DEFAULT_K_FACTOR
 
 def create_sample_leaderboard():
@@ -29,10 +29,28 @@ def create_app():
         rankings = leaderboard.get_rankings()
         player1, player2 = leaderboard.get_random_pair()
         
+        # Sort players so favored (higher rating) is always on left
+        if player1 and player2:
+            if player2.rating > player1.rating:
+                player1, player2 = player2, player1  # Swap so higher rating is first
+        
+        # Calculate win probabilities if we have both players
+        player1_win_prob = None
+        player2_win_prob = None
+        if player1 and player2:
+            player1_expected = calculate_expected_score(player1.rating, player2.rating)
+            player2_expected = calculate_expected_score(player2.rating, player1.rating)
+            
+            # Convert to percentages and round to whole numbers
+            player1_win_prob = round(player1_expected * 100)
+            player2_win_prob = round(player2_expected * 100)
+        
         return render_template('index.html', 
                              rankings=rankings, 
                              player1=player1, 
-                             player2=player2)
+                             player2=player2,
+                             player1_win_prob=player1_win_prob,
+                             player2_win_prob=player2_win_prob)
     
     @app.route('/match/result', methods=['POST'])
     def match_result():
