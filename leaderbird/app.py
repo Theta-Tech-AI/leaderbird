@@ -27,15 +27,12 @@ def create_app():
     @app.route('/')
     def index():
         rankings = leaderboard.get_rankings()
-        return render_template('index.html', rankings=rankings)
-    
-    @app.route('/match')
-    def match():
         player1, player2 = leaderboard.get_random_pair()
-        if not player1 or not player2:
-            flash("Need at least 2 players for a match")
-            return redirect(url_for('index'))
-        return render_template('match.html', player1=player1, player2=player2)
+        
+        return render_template('index.html', 
+                             rankings=rankings, 
+                             player1=player1, 
+                             player2=player2)
     
     @app.route('/match/result', methods=['POST'])
     def match_result():
