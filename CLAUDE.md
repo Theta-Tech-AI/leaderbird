@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. Also consider looking in .plans/*.md files and in .cursorrules for coding style rules that may be useful for you.
 
 ## Project Overview
 
