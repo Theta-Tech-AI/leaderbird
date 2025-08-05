@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Match - Leaderbird</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .match-container { text-align: center; margin: 40px 0; }
+        .player-card { 
+            display: inline-block; 
+            margin: 20px; 
+            padding: 20px; 
+            border: 2px solid #ddd; 
+            border-radius: 8px; 
+            min-width: 150px;
+        }
+        .vs { font-size: 24px; font-weight: bold; margin: 0 20px; }
+        .result-buttons { margin: 30px 0; }
+        .result-btn { 
+            margin: 10px; 
+            padding: 15px 25px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            border: none; 
+            border-radius: 5px; 
+            background-color: #007bff; 
+            color: white; 
+        }
+        .result-btn:hover { background-color: #0056b3; }
+        .draw-btn { background-color: #6c757d; }
+        .draw-btn:hover { background-color: #545b62; }
+        nav { margin-bottom: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">← Back to Leaderboard</a>
+        <a href="/match">New Match</a>
+    </nav>
+
+    <h1>Match Setup</h1>
+    
+    <div class="match-container">
+        <div class="player-card">
+            <h3>{{ player1.name }}</h3>
+            <p>Rating: {{ player1.rating }}</p>
+        </div>
+        
+        <span class="vs">VS</span>
+        
+        <div class="player-card">
+            <h3>{{ player2.name }}</h3>
+            <p>Rating: {{ player2.rating }}</p>
+        </div>
+    </div>
+
+    <div class="result-buttons">
+        <form method="POST" action="/match/result" style="display: inline;">
+            <input type="hidden" name="player1" value="{{ player1.name }}">
+            <input type="hidden" name="player2" value="{{ player2.name }}">
+            <input type="hidden" name="result" value="player1_wins">
+            <button type="submit" class="result-btn">{{ player1.name }} Wins</button>
+        </form>
+
+        <form method="POST" action="/match/result" style="display: inline;">
+            <input type="hidden" name="player1" value="{{ player1.name }}">
+            <input type="hidden" name="player2" value="{{ player2.name }}">
+            <input type="hidden" name="result" value="draw">
+            <button type="submit" class="result-btn draw-btn">Draw</button>
+        </form>
+
+        <form method="POST" action="/match/result" style="display: inline;">
+            <input type="hidden" name="player1" value="{{ player1.name }}">
+            <input type="hidden" name="player2" value="{{ player2.name }}">
+            <input type="hidden" name="result" value="player2_wins">
+            <button type="submit" class="result-btn">{{ player2.name }} Wins</button>
+        </form>
+    </div>
+</body>
+</html>

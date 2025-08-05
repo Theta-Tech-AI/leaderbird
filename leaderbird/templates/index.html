@@ -7,10 +7,21 @@
         table { border-collapse: collapse; width: 100%; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
+        nav { margin-bottom: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: #007bff; }
+        .rating-change-positive { color: #28a745; font-weight: bold; }
+        .rating-change-negative { color: #dc3545; font-weight: bold; }
+        .old-rating { color: #6c757d; font-size: 0.9em; }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="/">Leaderboard</a>
+        <a href="/match">New Match</a>
+    </nav>
+
     <h1>Leaderboard</h1>
+
     <table>
         <tr>
             <th>Rank</th>
@@ -21,7 +32,17 @@
         <tr>
             <td>{{ loop.index }}</td>
             <td>{{ player.name }}</td>
-            <td>{{ player.rating }}</td>
+            <td>
+                {{ player.rating }}
+                {% if player.in_recent_match and player.recent_change %}
+                    {% if player.recent_change > 0 %}
+                        <span class="rating-change-positive">↑+{{ player.recent_change }}</span>
+                    {% elif player.recent_change < 0 %}
+                        <span class="rating-change-negative">↓{{ player.recent_change }}</span>
+                    {% endif %}
+                    <span class="old-rating">(old rating: {{ player.old_rating }})</span>
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </table>
