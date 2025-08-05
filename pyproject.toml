@@ -4,8 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leaderbird"
-version = "0.1.0"
+version = "1"
 description = "A minimal starting package for leaderbird, for leaderboards and rankings."
 authors = [
   { name="Robert James Toth", email="robert.toth@thetatech.ai" }
+]
+dependencies = [
+    "flask>=2.3.0",
 ]
